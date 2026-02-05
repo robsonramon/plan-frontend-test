@@ -34,3 +34,9 @@
     }
   }
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 310px);
+  gap: 24px;
+}
