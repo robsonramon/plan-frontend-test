@@ -1,5 +1,16 @@
-@use "tailwindcss";
+@use 'tailwindcss';
 
 :root {
   font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0 70px;
+  background: linear-gradient(180deg, #f58220 0%, #f7a440 50%, #fbc02d 100%);
 }
