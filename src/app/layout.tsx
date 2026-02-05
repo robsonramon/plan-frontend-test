@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 
 import '@/styles/globals.scss'
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Header />
         {children}
         <ToastContainer />
+        <Footer />
       </body>
     </html>
   )
