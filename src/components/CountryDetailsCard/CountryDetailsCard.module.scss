@@ -1,0 +1,153 @@
+.card {
+  width: 80%;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 10px 0px #00000033;
+  margin: 20px 0;
+}
+
+.header {
+  height: 47px;
+  background-color: #58595b;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.continent {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  gap: 140px;
+}
+
+.flagWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    color: #707070;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+}
+
+.flag {
+  margin-top: 8px;
+}
+
+.countryName {
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 23px;
+  text-align: center;
+  color: #707070;
+  margin: 25px 0;
+}
+
+.capital {
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: center;
+}
+
+.capitalInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  width: 270px;
+  height: 47px;
+  background-color: #f58220;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.logo {
+  margin-left: auto;
+}
+
+.name {
+  flex: 1;
+  text-align: center;
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.flag {
+  border-radius: 4px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  font-family: 'Exo', sans-serif;
+  font-size: 23px;
+  color: #707070;
+
+  li {
+    display: grid;
+    grid-template-columns: 140px 20px 1fr;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  span {
+    text-align: right;
+  }
+
+  strong {
+    grid-column: 3;
+    text-align: left;
+  }
+
+  button {
+    align-self: center;
+  }
+}
+
+.backButton {
+  width: 270px;
+  height: 47px;
+  background-color: #f58220;
+  border: none;
+  border-radius: 24px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 50px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

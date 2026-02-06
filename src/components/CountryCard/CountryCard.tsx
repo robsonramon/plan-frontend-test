@@ -3,6 +3,7 @@
 import React from 'react'
 
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import { CountryCardData } from '@/types/country'
 
@@ -13,8 +14,9 @@ type CountryCardProps = {
 }
 
 export function CountryCard({ country }: CountryCardProps) {
+  const router = useRouter()
   const handleViewMore = () => {
-    console.log('levar para página de detalhes')
+    router.push(`country/${country.name}`)
   }
 
   return (
