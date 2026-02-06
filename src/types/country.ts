@@ -12,6 +12,7 @@ export interface CountryCardData {
   capital: string
   region: Continent
   flag: string
+  languages: string[]
 }
 
 export interface CountryDetailsData {

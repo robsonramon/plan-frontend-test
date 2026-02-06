@@ -1,8 +1,10 @@
 import { CountryCardData } from '@/types/country'
 import { CountryDetailsData } from '@/types/country'
 
-export async function getCountries(): Promise<CountryCardData[]> {
-  const response = await fetch('/api/countries')
+export async function getCountries(lang?: string): Promise<CountryCardData[]> {
+  const url = lang ? `/api/countries?lang=${lang}` : '/api/countries'
+
+  const response = await fetch(url)
 
   if (!response.ok) {
     throw new Error('Failed to fetch countries')

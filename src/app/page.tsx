@@ -35,8 +35,9 @@ export default function Home() {
   useEffect(() => {
     async function loadCountries() {
       try {
-        const data = await getCountries()
+        const data = await getCountries(filters.language || undefined)
         setCountries(data)
+        setCurrentPage(1)
       } catch {
         setError(true)
       } finally {
@@ -45,7 +46,7 @@ export default function Home() {
     }
 
     loadCountries()
-  }, [])
+  }, [filters.language])
 
   const filteredCountries = countries.filter((country) => {
     const matchesSearch = country.name
@@ -66,6 +67,11 @@ export default function Home() {
   const endIndex = startIndex + ITEMS_PER_PAGE
 
   const paginatedCountries = filteredCountries.slice(startIndex, endIndex)
+  console.log('coutries', countries)
+  const languageOptions = Array.from(
+    new Set(countries.flatMap((c) => c.languages)),
+  ).sort()
+  console.log('languageOptions', languageOptions)
 
   if (loading) {
     return <p style={{ textAlign: 'center' }}>Carregando países...</p>
@@ -81,6 +87,7 @@ export default function Home() {
         search={filters.search}
         language={filters.language}
         continents={filters.continents}
+        languageOptions={languageOptions}
         onSearchChange={(value) => handleFilterChange('search', value)}
         onLanguageChange={(value) => handleFilterChange('language', value)}
         onContinentChange={(values) => handleFilterChange('continents', values)}

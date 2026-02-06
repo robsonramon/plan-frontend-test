@@ -15,11 +15,10 @@ const CONTINENTS = [
   'Oceania',
 ]
 
-const LANGUAGES = ['Português', 'Inglês', 'Espanhol', 'Francês', 'Alemão']
-
 type HeaderProps = {
   search: string
   language: string
+  languageOptions: string[]
   continents: string[]
   onSearchChange: (value: string) => void
   onLanguageChange: (value: string) => void
@@ -29,6 +28,7 @@ type HeaderProps = {
 export function Header({
   search,
   language,
+  languageOptions,
   continents,
   onSearchChange,
   onLanguageChange,
@@ -62,7 +62,7 @@ export function Header({
                 value={language}
                 onChange={(e) => onLanguageChange(e.target.value)}>
                 <option value="">Selecione o idioma</option>
-                {LANGUAGES.map((language) => (
+                {languageOptions.map((language) => (
                   <option key={language} value={language}>
                     {language}
                   </option>
