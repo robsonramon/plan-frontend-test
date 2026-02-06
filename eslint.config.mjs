@@ -62,6 +62,7 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'off',
       'react/display-name': 'off',
       'react/prop-types': 'off',
+      'no-unused-vars': 'off',
 
       'import-helpers/order-imports': [
         'error',
@@ -85,6 +86,12 @@ export default defineConfig([
         'error',
         {
           allowSingleExtends: true,
+        },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
         },
       ],
     },

@@ -1,79 +1,64 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { CountryCard } from '@/components/CountryCard/CountryCard'
+import { Pagination } from '@/components/Pagination/Pagination'
+import { getCountries } from '@/services/restCountries'
 import { CountryCardData } from '@/types/country'
 
 import styles from './Home.module.scss'
 
-const mockCountries: CountryCardData[] = [
-  {
-    code: 'DEU',
-    name: 'Alemanha',
-    capital: 'Berlim',
-    continent: 'Europe',
-    flag: 'https://flagcdn.com/w320/de.png',
-  },
-  {
-    code: 'BRA',
-    name: 'Brasil',
-    capital: 'Brasília',
-    continent: 'South America',
-    flag: 'https://flagcdn.com/w320/br.png',
-  },
-  {
-    code: 'USA',
-    name: 'Estados Unidos',
-    capital: 'Washington, D.C.',
-    continent: 'North America',
-    flag: 'https://flagcdn.com/w320/us.png',
-  },
-  {
-    code: 'ZAF',
-    name: 'África do Sul',
-    capital: 'Pretória',
-    continent: 'Africa',
-    flag: 'https://flagcdn.com/w320/za.png',
-  },
-  {
-    code: 'JPN',
-    name: 'Japão',
-    capital: 'Tóquio',
-    continent: 'Asia',
-    flag: 'https://flagcdn.com/w320/jp.png',
-  },
-  {
-    code: 'AUS',
-    name: 'Austrália',
-    capital: 'Camberra',
-    continent: 'Oceania',
-    flag: 'https://flagcdn.com/w320/au.png',
-  },
-  {
-    code: 'FRA',
-    name: 'França',
-    capital: 'Paris',
-    continent: 'Europe',
-    flag: 'https://flagcdn.com/w320/fr.png',
-  },
-  {
-    code: 'ARG',
-    name: 'Argentina',
-    capital: 'Buenos Aires',
-    continent: 'South America',
-    flag: 'https://flagcdn.com/w320/ar.png',
-  },
-]
+const ITEMS_PER_PAGE = 8
 
 export default function Home() {
+  const [countries, setCountries] = useState<CountryCardData[]>([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    async function loadCountries() {
+      try {
+        const data = await getCountries()
+        setCountries(data)
+      } catch {
+        setError(true)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadCountries()
+  }, [])
+
+  const totalPages = Math.ceil(countries.length / ITEMS_PER_PAGE)
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const endIndex = startIndex + ITEMS_PER_PAGE
+
+  const paginatedCountries = countries.slice(startIndex, endIndex)
+
+  if (loading) {
+    return <p style={{ textAlign: 'center' }}>Carregando países...</p>
+  }
+
+  if (error) {
+    return <p style={{ textAlign: 'center' }}>Erro ao carregar países.</p>
+  }
+
   return (
     <main className={styles.content}>
       <div className={styles.grid}>
-        {mockCountries.map((country) => (
+        {paginatedCountries.slice(0, 8).map((country) => (
           <CountryCard key={country.code} country={country} />
         ))}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </main>
   )
 }

@@ -10,7 +10,7 @@ export interface CountryCardData {
   code: string
   name: string
   capital: string
-  continent: Continent
+  region: Continent
   flag: string
 }
 

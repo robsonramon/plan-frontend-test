@@ -22,11 +22,11 @@ export function CountryCard({ country }: CountryCardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.continent}>{country.continent}</span>
+        <span className={styles.continent}>{country.region}</span>
 
         <Image
-          src={`/img/${country.continent.toLowerCase().replace(' ', '')}.webp`}
-          alt={country.continent}
+          src={`/img/${country.region.toLowerCase().replace(' ', '')}.webp`}
+          alt={country.region}
           width={32}
           height={32}
         />
@@ -45,7 +45,7 @@ export function CountryCard({ country }: CountryCardProps) {
         <div className={styles.capitalInfo}>
           <Image
             src={'/img/capital-icon.webp'}
-            alt={country.continent}
+            alt={country.region}
             width={20}
             height={20}
           />
