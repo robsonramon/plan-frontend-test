@@ -16,7 +16,13 @@ type CountryCardProps = {
 export function CountryCard({ country }: CountryCardProps) {
   const router = useRouter()
   const handleViewMore = () => {
-    router.push(`country/${country.name}`)
+    router.push(
+      `country/${country.name
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-')}-${country.code}`,
+    )
   }
 
   return (

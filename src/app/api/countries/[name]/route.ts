@@ -7,12 +7,25 @@ type Params = {
 }
 
 export async function GET(_: Request, { params }: Params) {
-  const response = await fetch(
-    `https://restcountries.com/v3.1/name/${params.name}`,
-    {
-      next: { revalidate: 60 * 60 * 24 },
-    },
-  )
+  const code = params.name.split('-').pop()
+
+  if (!code) {
+    return NextResponse.json(
+      { message: 'Invalid country identifier' },
+      { status: 400 },
+    )
+  }
+
+  const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`, {
+    next: { revalidate: 60 * 60 * 24 },
+  })
+
+  if (!response.ok) {
+    return NextResponse.json(
+      { message: 'Country not found' },
+      { status: response.status },
+    )
+  }
 
   const data = await response.json()
 
