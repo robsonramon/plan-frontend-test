@@ -17,7 +17,23 @@ const CONTINENTS = [
 
 const LANGUAGES = ['Português', 'Inglês', 'Espanhol', 'Francês', 'Alemão']
 
-export function Header() {
+type HeaderProps = {
+  search: string
+  language: string
+  continents: string[]
+  onSearchChange: (value: string) => void
+  onLanguageChange: (value: string) => void
+  onContinentChange: (values: string[]) => void
+}
+
+export function Header({
+  search,
+  language,
+  continents,
+  onSearchChange,
+  onLanguageChange,
+  onContinentChange,
+}: HeaderProps) {
   const pathname = usePathname()
   const isHome = pathname === '/'
   return (
@@ -35,11 +51,16 @@ export function Header() {
             <div className={styles.inputs}>
               <input
                 type="text"
+                value={search}
+                onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="Informe o país que deseja conhecer..."
                 className={styles.input}
               />
 
-              <select className={styles.select}>
+              <select
+                className={styles.select}
+                value={language}
+                onChange={(e) => onLanguageChange(e.target.value)}>
                 <option value="">Selecione o idioma</option>
                 {LANGUAGES.map((language) => (
                   <option key={language} value={language}>
@@ -52,7 +73,17 @@ export function Header() {
             <div className={styles.checkboxes}>
               {CONTINENTS.map((continent) => (
                 <label key={continent} className={styles.checkbox}>
-                  <input type="checkbox" value={continent} />
+                  <input
+                    type="checkbox"
+                    checked={continents.includes(continent)}
+                    onChange={(e) => {
+                      const updated = e.target.checked
+                        ? [...continents, continent]
+                        : continents.filter((c) => c !== continent)
+
+                      onContinentChange(updated)
+                    }}
+                  />
                   <span>{continent}</span>
                 </label>
               ))}
