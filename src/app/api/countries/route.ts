@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
       country.translations?.por?.common ?? country.name?.common ?? 'Unknown',
     capital: country.capital?.[0] ?? '—',
     region: country.region,
-    flag: country.flags?.svg ?? country.flags?.png,
+    flag: country.flags,
     languages: country.languages ? Object.values(country.languages) : [],
   }))
 

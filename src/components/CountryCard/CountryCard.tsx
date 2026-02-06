@@ -40,8 +40,8 @@ export function CountryCard({ country }: CountryCardProps) {
 
       <div className={styles.content}>
         <Image
-          src={country.flag}
-          alt={`Flag of ${country.name}`}
+          src={country.flag?.svg ?? country.flag?.png}
+          alt={country.flag.alt ?? `Flag of ${country.name}`}
           width={24}
           height={18}
           className={styles.flag}

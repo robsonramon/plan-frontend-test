@@ -31,8 +31,8 @@ export function CountryDetailsCard({ country }: CountryCardProps) {
       <div className={styles.content}>
         <div className={styles.flagWrapper}>
           <Image
-            src={country.flag}
-            alt={`Flag of ${country.name}`}
+            src={country.flag?.svg ?? country.flag?.png}
+            alt={country.flag.alt ?? `Flag of ${country.name}`}
             width={290}
             height={220}
             className={styles.flag}

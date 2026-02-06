@@ -6,12 +6,18 @@ export type Continent =
   | 'South America'
   | 'Oceania'
 
+export type CountryFlag = {
+  svg: string
+  png: string
+  alt: string
+}
+
 export interface CountryCardData {
   code: string
   name: string
   capital: string
   region: Continent
-  flag: string
+  flag: CountryFlag
   languages: string[]
 }
 
@@ -25,5 +31,5 @@ export interface CountryDetailsData {
   languages: string[]
   region: string
   subregion?: string
-  flag: string
+  flag: CountryFlag
 }

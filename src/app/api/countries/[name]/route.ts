@@ -48,7 +48,7 @@ export async function GET(_: Request, { params }: Params) {
     currencies: Object.values(country.currencies ?? {}).map(
       (currency: any) => currency.name,
     ),
-    flag: country.flags?.svg ?? country.flags?.png,
+    flag: country.flags,
   }
 
   return NextResponse.json(normalizedCountry)
