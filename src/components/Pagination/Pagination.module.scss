@@ -52,3 +52,8 @@
   padding: 0 6px;
   font-weight: 700;
 }
+
+button:focus-visible {
+  outline: 3px solid #f58220;
+  outline-offset: 2px;
+}

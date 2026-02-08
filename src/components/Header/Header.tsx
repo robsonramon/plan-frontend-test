@@ -37,7 +37,7 @@ export function Header({
   const pathname = usePathname()
   const isHome = pathname === '/'
   return (
-    <header className={styles.wrapper}>
+    <header className={styles.wrapper} role="banner">
       <div className={styles.container}>
         <Image
           src="/img/LOGO.webp"
@@ -49,15 +49,22 @@ export function Header({
         {isHome && (
           <div className={styles.filters}>
             <div className={styles.inputs}>
+              <label htmlFor="search" className="sr-only">
+                Buscar país
+              </label>
               <input
+                id="search"
                 type="text"
                 value={search}
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="Informe o país que deseja conhecer..."
                 className={styles.input}
               />
-
+              <label htmlFor="language" className="sr-only">
+                Filtrar por idioma
+              </label>
               <select
+                id="language"
                 className={styles.select}
                 value={language}
                 onChange={(e) => onLanguageChange(e.target.value)}>
@@ -71,6 +78,7 @@ export function Header({
             </div>
 
             <div className={styles.checkboxes}>
+              <legend className="sr-only">Filtrar por continente</legend>
               {CONTINENTS.map((continent) => (
                 <label key={continent} className={styles.checkbox}>
                   <input

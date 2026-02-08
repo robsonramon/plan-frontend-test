@@ -50,6 +50,7 @@ export function Pagination({
   return (
     <nav className={styles.pagination} aria-label="Paginação">
       <button
+        aria-label="Página anterior"
         className={styles.arrow}
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}>
@@ -78,6 +79,7 @@ export function Pagination({
       </ul>
 
       <button
+        aria-label="Próxima página"
         className={styles.arrow}
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}>
