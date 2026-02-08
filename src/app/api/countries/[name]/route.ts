@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server'
 
 type Params = {
-  params: {
+  params: Promise<{
     name: string
-  }
+  }>
 }
 
 export async function GET(_: Request, { params }: Params) {
-  const code = params.name.split('-').pop()
+  const { name } = await params
+  const code = name.split('-').pop()
 
   if (!code) {
     return NextResponse.json(
