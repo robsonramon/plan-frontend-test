@@ -43,7 +43,7 @@ export function Header({
           src="/img/LOGO.webp"
           alt="Logo"
           width={108}
-          height={5}
+          height={75}
           priority
         />
         {isHome && (

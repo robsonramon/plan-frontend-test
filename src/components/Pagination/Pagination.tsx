@@ -1,6 +1,8 @@
 'use client'
 import React from 'react'
 
+import { useIsMobile } from '@/hooks/useIsMobile'
+
 import styles from './Pagination.module.scss'
 
 type PaginationProps = {
@@ -14,36 +16,31 @@ export function Pagination({
   totalPages,
   onPageChange,
 }: PaginationProps) {
+  const isMobile = useIsMobile()
   if (totalPages <= 1) return null
-
   const getPages = () => {
     const pages: (number | 'dots')[] = []
+    const delta = isMobile ? 0 : 1
 
-    const showPages = new Set<number>()
+    const range: number[] = []
 
-    // sempre apresentar as duas primeiras páginas
-    showPages.add(1)
-    showPages.add(2)
-
-    // sempre apresentar as duas últimas páginas
-    showPages.add(totalPages)
-    showPages.add(totalPages - 1)
-
-    // páginas próximas da atual
-    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+    for (let i = currentPage - delta; i <= currentPage + delta; i++) {
       if (i > 0 && i <= totalPages) {
-        showPages.add(i)
+        range.push(i)
       }
     }
 
-    const sortedPages = Array.from(showPages).sort((a, b) => a - b)
+    if (!range.includes(1)) {
+      pages.push(1)
+      if (range[0] > 2) pages.push('dots')
+    }
 
-    sortedPages.forEach((page, index) => {
-      if (index > 0 && page - sortedPages[index - 1] > 1) {
-        pages.push('dots')
-      }
-      pages.push(page)
-    })
+    range.forEach((p) => pages.push(p))
+
+    if (!range.includes(totalPages)) {
+      if (range[range.length - 1] < totalPages - 1) pages.push('dots')
+      pages.push(totalPages)
+    }
 
     return pages
   }

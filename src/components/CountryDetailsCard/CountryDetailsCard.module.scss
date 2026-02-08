@@ -1,5 +1,8 @@
+@import '@/styles/breakpoints';
+
 .card {
-  width: 80%;
+  width: 90%;
+  max-width: 1100px;
   border-radius: 16px;
   overflow: hidden;
   background-color: #ffffff;
@@ -25,12 +28,22 @@
 }
 
 .content {
-  flex: 1;
   padding: 20px;
-  width: 100%;
   display: flex;
-  align-items: start;
   gap: 140px;
+  align-items: flex-start;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
 }
 
 .flagWrapper {
@@ -38,15 +51,13 @@
   flex-direction: column;
   align-items: center;
 
-  p {
-    color: #707070;
-    font-weight: 700;
-    margin-top: 10px;
+  @include mobile {
+    width: 100%;
   }
 }
 
 .flag {
-  margin-top: 8px;
+  max-width: 100%;
 }
 
 .countryName {
@@ -57,6 +68,15 @@
   text-align: center;
   color: #707070;
   margin: 25px 0;
+
+  @include tablet {
+    font-size: 36px;
+  }
+
+  @include mobile {
+    font-size: 28px;
+    margin: 16px 0;
+  }
 }
 
 .capital {
@@ -107,31 +127,30 @@
 }
 
 .list {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-  font-family: 'Exo', sans-serif;
   font-size: 23px;
-  color: #707070;
 
   li {
-    display: grid;
-    grid-template-columns: 140px 20px 1fr;
-    align-items: center;
     margin-bottom: 8px;
   }
 
-  span {
-    text-align: right;
-  }
+  @include mobile {
+    font-size: 18px;
 
-  strong {
-    grid-column: 3;
-    text-align: left;
-  }
+    li {
+      display: grid;
+      grid-template-columns: 140px 20px 1fr;
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
 
-  button {
-    align-self: center;
+    span {
+      text-align: left;
+    }
+
+    strong {
+      grid-column: auto;
+      margin-bottom: 12px;
+    }
   }
 }
 
@@ -149,5 +168,10 @@
 
   &:hover {
     opacity: 0.9;
+  }
+
+  @include mobile {
+    width: 100%;
+    margin-top: 32px;
   }
 }

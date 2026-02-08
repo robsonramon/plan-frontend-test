@@ -13,11 +13,11 @@ export function Footer() {
           src="/img/LOGO-GRUPO.webp"
           alt="Logo"
           width={108}
-          height={5}
+          height={75}
           priority
         />
 
-        <p>Grupo Plan Marketing (C) Todos os direitos reservados - 2025</p>
+        <p>Grupo Plan Marketing (C) Todos os direitos reservados - 2026</p>
       </div>
     </header>
   )

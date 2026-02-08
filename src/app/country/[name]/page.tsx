@@ -2,9 +2,13 @@
 
 import React, { useEffect, useState } from 'react'
 
+import Image from 'next/image'
+
 import { CountryDetailsCard } from '@/components/CountryDetailsCard/CountryDetailsCard'
 import { getCountryBySlug } from '@/services/restCountries'
 import { CountryDetailsData } from '@/types/country'
+
+import styles from './Country.module.scss'
 
 export default function CountryPage({ params }: { params: { name: string } }) {
   const [country, setCountry] = useState<CountryDetailsData | null>(null)
@@ -35,13 +39,8 @@ export default function CountryPage({ params }: { params: { name: string } }) {
   }
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+    <div className={styles.container}>
+      <Image src="/img/LOGO.webp" alt="Logo" width={108} height={5} priority />
       <CountryDetailsCard country={country} />
     </div>
   )
