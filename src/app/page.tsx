@@ -3,7 +3,9 @@
 import React from 'react'
 
 import { CountryCard } from '@/components/CountryCard/CountryCard'
+import { Error } from '@/components/Error/Error'
 import { Header } from '@/components/Header/Header'
+import { Loading } from '@/components/Loading/Loading'
 import { Pagination } from '@/components/Pagination/Pagination'
 import { useCountries } from '@/hooks/useCountries'
 import { useCountryFilters } from '@/hooks/useFilters'
@@ -34,14 +36,6 @@ export default function Home() {
     return Array.from(new Set(countries.flatMap((c) => c.languages))).sort()
   }, [countries])
 
-  if (loading) {
-    return <p style={{ textAlign: 'center' }}>Carregando países...</p>
-  }
-
-  if (error) {
-    return <p style={{ textAlign: 'center' }}>Erro ao carregar países.</p>
-  }
-
   return (
     <main className={styles.content}>
       <Header
@@ -54,17 +48,29 @@ export default function Home() {
         onContinentChange={setContinents}
       />
 
-      <div className={styles.grid}>
-        {paginatedItems.map((country) => (
-          <CountryCard key={country.code} country={country} />
-        ))}
-      </div>
+      {loading && <Loading message="Carregando país..." />}
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
+      {error && (
+        <Error
+          message="Erro ao carregar país."
+          onRetry={() => window.location.reload()}
+        />
+      )}
+      {!loading && !error && (
+        <>
+          <div className={styles.grid}>
+            {paginatedItems.map((country) => (
+              <CountryCard key={country.code} country={country} />
+            ))}
+          </div>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </>
+      )}
     </main>
   )
 }

@@ -10,11 +10,14 @@ import { CountryDetailsData } from '@/types/country'
 import styles from './CountryDetailsCard.module.scss'
 
 type CountryCardProps = {
-  country: CountryDetailsData
+  country: CountryDetailsData | null
 }
 
 export function CountryDetailsCard({ country }: CountryCardProps) {
   const router = useRouter()
+  if (!country) {
+    return <p>Não foi possível encontrar esse país</p>
+  }
   return (
     <div className={styles.card}>
       <div className={styles.header}>
