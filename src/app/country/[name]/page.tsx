@@ -1,40 +1,16 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import { CountryDetailsCard } from '@/components/CountryDetailsCard/CountryDetailsCard'
-import { getCountryBySlug } from '@/services/restCountries'
-import { CountryDetailsData } from '@/types/country'
+import { useCountryDetails } from '@/hooks/useCountryDetails'
 
 import styles from './Country.module.scss'
 
 export default function CountryPage() {
-  const [country, setCountry] = useState<CountryDetailsData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-  const params = useParams<{ name: string }>()
-
-  useEffect(() => {
-    async function loadCountry() {
-      try {
-        const data = await getCountryBySlug(params.name)
-        setCountry(data)
-      } catch {
-        setError(true)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    if (params.name) {
-      loadCountry()
-    }
-
-    loadCountry()
-  }, [params.name])
+  const { country, loading, error } = useCountryDetails()
 
   if (loading) {
     return <p style={{ textAlign: 'center' }}>Carregando país…</p>
