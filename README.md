@@ -1,136 +1,297 @@
-# ⭐ Desafio Técnico – Desenvolvedor(a) Front-End (Next.js)
+# Plan | Países do Mundo
 
-​
+Aplicação web desenvolvida com **Next.js**, **TypeScript** e **Sass**, que permite explorar países do mundo de forma interativa, com filtros, paginação e visualização de detalhes.
 
-## ⭐ Objetivo
-
-​
-Desenvolver uma aplicação web com **Next.js** que consuma a [REST Countries API](https://restcountries.com/#rest-countries), permitindo ao usuário explorar e visualizar informações sobre países de forma interativa e responsiva.
-​
+O projeto consome a **REST Countries API** e foi construído com foco em organização de código, UX, responsividade, acessibilidade e boas práticas modernas do **Next.js App Router**.
 
 ---
 
-​
+## Como rodar o projeto localmente
 
-## ⭐ Contexto
+### Pré-requisitos
 
-​
-A aplicação será um catálogo de países com recursos de filtragem e visualização de detalhes. O usuário deve poder:
-​
+- Node.js 18+
+- npm ou yarn
 
-- Navegar por uma lista de países.
-- Filtrar por:
-  - Nome do país (busca textual).
-  - Continente (checkboxes).
-  - Idioma (select).
-- Acessar uma página com detalhes do país selecionado.
-  ​
+### Passo a passo
 
----
+```bash
+# Clone o repositório
+git clone https://github.com/robsonramon/plan-frontend-test
 
-​
+# Entre na pasta do projeto
+cd plan-frontend-test
 
-## ⭐ Layout
+# Instale as dependências
+npm install
 
-Segue links do layout para aplicação:
-  - [Figma Componentes](https://www.figma.com/design/uqRKSNiAtLlHWzg6qs7J0v/TESTE-FRONT-PLAN?node-id=0-1&p=f)
-  - [Figma Apresentação](https://www.figma.com/proto/uqRKSNiAtLlHWzg6qs7J0v/TESTE-FRONT-PLAN?node-id=2-615&t=jAEkXLJ8nXUMIDD4-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
+# Rode o projeto em modo desenvolvimento
+npm run dev
 
-**A responsividade deve ser aplicada para manter o layout mais coerente com o definido acima.**
+A aplicação estará disponível em:
+http://localhost:3000
 
----
+```
 
-​
+## Tecnologias utilizadas
 
-## ⭐ Requisitos Técnicos
+- **Next.js (App Router)**
+- **React**
+- **TypeScript**
+- **Sass (CSS Modules)**
+- **REST Countries API**
+- **ESLint + Prettier**
+- **Git + Conventional Commits**
 
-​
+## Arquitetura do Projeto
 
-- Utilizar **Next.js** como framework principal ([https://nextjs.org/](https://nextjs.org/)).
-- Utilizar **ESLint**, conforme [documentação oficial](https://nextjs.org/docs/app/api-reference/config/eslint).
-- Utilizar **TypeScript**
-- Garantir **responsividade** da aplicação.
-- Exibir as informações dos países **em português**, quando disponível, utilizando o campo `translations.por` da versão `v3.1` da REST Countries API.
-- Código organizado, componentizado e limpo.
-  ​
+O projeto foi estruturado seguindo os princípios do **Next.js App Router**, com separação clara de responsabilidades, foco em manutenibilidade, reutilização de código e facilidade de evolução.
 
----
+### Estrutura de pastas
 
-​
+```bash
+src
+├── app
+│ ├── api
+│ │ └── countries
+│ │ ├── [name]
+│ │ │ └── route.ts
+│ │ └── route.ts
+│ ├── country
+│ │ └── [name]
+│ │ ├── Country.module.scss
+│ │ └── page.tsx
+│ ├── Home.module.scss
+│ ├── layout.tsx
+│ └── page.tsx
+├── components
+├── hooks
+├── services
+├── styles
+└── types
+```
 
-## ⭐ Funcionalidades Esperadas
+### app/ — Rotas e Layout
 
-​
+Responsável por:
 
-### 1. Página Inicial
+- Rotas da aplicação
+- Layouts compartilhados
+- Páginas principais
+- API Routes
 
-- Lista de países com:
-  - Nome (em português)
-  - Bandeira
-  - Região
-- Filtros:
-  - **Busca por nome**
-  - **Filtro por continente** (checkbox)
-  - **Filtro por idioma** (select)
-    ​
+**Principais arquivos:**
 
-### 2. Página de Detalhes
-
-- Informações completas de um país:
-  - Nome oficial
-  - População
-  - Moeda
-  - Línguas faladas
-  - Bandeira
-  - Região / Sub-região
-    ​
-
----
-
-​
-
-## ⭐ Diferenciais (Desejável, não obrigatório)
-
-​
-
-- Estilização moderna: **TailwindCSS**, **CSS Modules**
-- Configuração de **Prettier** e **ESLint**
-- Considerações básicas de acessibilidade
-  ​
+- `app/page.tsx` → Página inicial (Home)
+- `app/country/[name]/page.tsx` → Página de detalhes do país
+- `app/layout.tsx` → Layout global (metadata, estilos globais, estrutura base)
 
 ---
 
-## ⭐ Considerações sobre o repositório
+### app/api/ — API Routes
 
-​
+Camada intermediária entre o frontend e a REST Countries API.
 
-Este projeto deve ser utilizado como base para o desenvolvimento do seu teste. Alguns componentes estão presentes apenas como exemplo para o desenvolvedor, e devem ser removidos antes do início efetivo do desenvolvimento do teste.
+Benefícios:
 
-​
+- Normalização de dados
+- Redução de payloads
+- Cache (`revalidate`)
+- Desacoplamento do frontend
 
-## ⭐ Entrega
+**Endpoints:**
 
-​
+- `GET /api/countries` → lista de países
+- `GET /api/countries/[name]` → detalhes de um país específico
 
-1. Faça um fork do repositório público <link do repositorio>.
-2. Inclua no `README.md` as seguintes informações:
-   - Instruções para rodar localmente.
-   - Breve explicação sobre suas escolhas técnicas.
-   - Link do deploy (se houver).
-3. Submeta o link do repositório e, se aplicável, do deploy.
-   ​
-   Boa sorte! Estamos ansiosos para ver sua solução. 🚀
+---
 
-​
+### components/ — Componentes reutilizáveis
 
-## ⭐ Instruções
+Componentes visuais desacoplados e isolados por responsabilidade.
 
-​
+Exemplos:
 
-## ⭐ Breve explicação
+- `CountryCard`
+- `CountryDetailsCard`
+- `Header`
+- `Pagination`
+- `Loading` e `Error`
+- `Footer`
 
-​
+Cada componente possui:
 
-## ⭐ Link do deploy (se houver)
+- Arquivo `.tsx`
+- Arquivo `.module.scss`
 
-​
+---
+
+### hooks/ — Lógica e estado isolados
+
+Hooks customizados para manter componentes simples e declarativos.
+
+Principais hooks:
+
+- `useCountries`
+- `useCountryDetails`
+- `useFilters`
+- `usePagination`
+- `useItemsPerPage`
+- `useIsMobile`
+
+Benefícios:
+
+- Legibilidade
+- Reutilização
+- Testabilidade
+- Organização
+
+---
+
+### services/ — Integração com APIs
+
+Centraliza chamadas à API interna (`/api/countries`).
+
+Exemplo:
+
+- `restCountries.ts`
+
+Facilita manutenção, reduzindo duplicação, mudanças futuras e testabilidade.
+
+---
+
+### styles/ — Estilos globais e design tokens
+
+- `globals.scss` → estilos globais
+- `_breakpoints.scss` → mixins de responsividade
+- `variables.scss` → cores e variáveis do tema
+
+Mantém consistência visual e base simples de design system.
+
+---
+
+### types/ — Tipagens TypeScript
+
+Tipagens globais do projeto:
+
+- `country.ts` → dados de países
+- `filters.ts` → filtros
+
+Benefícios:
+
+- Segurança
+- Autocomplete
+- Menos erros em runtime
+
+---
+
+### Considerações finais
+
+Decisões arquiteturais foram tomadas visando:
+
+- Separação clara de responsabilidades
+- Facilidade de leitura e manutenção
+- Uso correto do App Router
+- Boa experiência do usuário
+- Escalabilidade
+
+## Integração com a REST Countries API
+
+A integração é feita através de **services dedicados**, garantindo organização e desacoplamento da lógica de comunicação externa.
+
+- As **API Routes do Next.js** foram utilizadas como camada intermediária entre o frontend e a REST Countries API.
+- Uso de `fetch` com **cache nativo do Next.js (`revalidate`)** para melhorar performance e reduzir chamadas desnecessárias.
+
+### Exemplos de uso
+
+- **Listagem de países**
+- **Busca de país por código (cca3)**
+
+## Filtros e Paginação
+
+### Filtros implementados
+
+- **Busca por nome do país**
+- **Filtro por continente**
+- **Filtro por idioma** (países que falam o idioma)
+
+> Os filtros foram implementados inicialmente no **client-side** por simplicidade e clareza, com possibilidade de migração futura para filtros **server-side**.
+
+---
+
+### Paginação
+
+- **Paginação dinâmica** ajustada conforme o tamanho da tela:
+  - Mobile → 2 itens por página
+  - Tablet → 4 itens por página
+  - Desktop → 8 itens por página
+- Componente de paginação adaptado para mobile, reduzindo poluição visual
+
+## Responsividade
+
+A responsividade foi implementada utilizando **media queries em Sass**, com breakpoints centralizados em um único arquivo:
+
+`styles/_breakpoints.scss`
+
+### Benefícios
+
+- Consistência entre componentes
+- Fácil manutenção
+- Layout adaptado para **mobile, tablet e desktop**
+
+## Acessibilidade (A11y)
+
+Foram aplicadas boas práticas de acessibilidade, incluindo:
+
+- `alt` descritivo em imagens (especialmente bandeiras)
+- Labels invisíveis (`sr-only`) para inputs e selects
+- Uso correto de `aria-label` em botões de ícone
+- `aria-current` na paginação
+- Estrutura semântica (`header`, `main`, `nav`, `footer`)
+- Foco visível para navegação por teclado
+
+### Benefícios
+
+Essas práticas melhoram:
+
+- Usabilidade
+- Inclusão
+- SEO
+- Qualidade geral da aplicação
+
+## Estilização
+
+- Utilização de **Sass Modules**
+- Estilos isolados por componente
+- Sem dependência de bibliotecas externas de UI
+- Layout fiel ao design proposto
+- Componentes reutilizáveis e bem definidos
+
+## SEO
+
+- Configuração de **metadata global** no `layout.tsx`
+- Uso da **Metadata API do Next.js**
+- Titles dinâmicos por página (quando aplicável)
+- Estrutura preparada para indexação correta
+
+> A opção foi por manter o SEO centralizado no layout, garantindo consistência e evitando complexidade desnecessária.
+
+## Qualidade de Código
+
+- **ESLint** configurado conforme recomendações do Next.js
+- **Prettier** para padronização de código
+- Tipagem forte com **TypeScript**
+- Commits padronizados seguindo **Conventional Commits**
+
+## Possíveis evoluções futuras
+
+- **Filtros server-side** (região / idioma)
+- **Skeleton loaders** para melhorar UX em carregamentos
+- **Persistência de filtros na URL**
+- **Internacionalização (i18n)**
+- **Sitemap automático** para SEO
+- **Testes automatizados** para garantir qualidade
+
+```
+
+```

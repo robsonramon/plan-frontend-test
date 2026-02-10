@@ -51,9 +51,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <div className="app-layout">
+          <main className="app-content">{children}</main>
+          <Footer />
+        </div>
+
         <ToastContainer />
-        <Footer />
       </body>
     </html>
   )

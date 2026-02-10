@@ -8,7 +8,7 @@ export function useItemsPerPage() {
 
     if (width <= 320) return 2
     if (width <= 767) return 2
-    if (width <= 1024) return 4
+    if (width <= 1024) return 6
     return 8
   }
 
