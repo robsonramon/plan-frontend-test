@@ -53,7 +53,8 @@
   font-weight: 700;
 }
 
-button:focus-visible {
+.pageButton:focus-visible,
+.arrow:focus-visible {
   outline: 3px solid #f58220;
   outline-offset: 2px;
 }
