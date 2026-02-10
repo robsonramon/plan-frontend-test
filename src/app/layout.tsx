@@ -2,15 +2,13 @@ import React from 'react'
 import { ToastContainer } from 'react-toastify'
 
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Exo } from 'next/font/google'
 
 import { Footer } from '@/components/Footer/Footer'
 
 import '@/styles/globals.scss'
 
 import 'react-toastify/dist/ReactToastify.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
@@ -42,6 +40,12 @@ export const metadata: Metadata = {
     follow: true,
   },
 }
+const exo = Exo({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--exo',
+  display: 'swap',
+})
 
 export default function RootLayout({
   children,
@@ -50,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${exo.variable}`}>
         <div className="app-layout">
           <main className="app-content">{children}</main>
           <Footer />

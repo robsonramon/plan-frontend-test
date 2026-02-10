@@ -12,8 +12,8 @@ export function Footer() {
         <Image
           src="/img/LOGO-GRUPO.webp"
           alt="Logo"
-          width={108}
-          height={75}
+          width={126}
+          height={92}
           priority
         />
 

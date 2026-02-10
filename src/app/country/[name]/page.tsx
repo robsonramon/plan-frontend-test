@@ -16,7 +16,7 @@ export default function CountryPage() {
 
   return (
     <div className={styles.container}>
-      <Image src="/img/LOGO.webp" alt="Logo" width={108} height={75} priority />
+      <Image src="/img/LOGO.webp" alt="Logo" width={108} height={59} priority />
       {loading && <Loading message="Carregando país..." />}
 
       {error && (

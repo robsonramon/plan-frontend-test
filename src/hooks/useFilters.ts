@@ -15,7 +15,11 @@ export function useCountryFilters(countries: CountryCardData[]) {
       .includes(search.toLowerCase())
 
     const matchesContinent =
-      continents.length === 0 || continents.includes(country.region)
+      continents.length === 0 ||
+      continents.some(
+        (continent) =>
+          country.region === continent || country.subregion === continent,
+      )
 
     const matchesLanguage = !language || country.languages.includes(language)
 

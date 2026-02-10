@@ -261,6 +261,14 @@ Essas práticas melhoram:
 - SEO
 - Qualidade geral da aplicação
 
+## Imagens Otimizadas
+
+- Uso do formato **WebP** para todas as imagens
+- Compressão mais eficiente que **JPEG** e **PNG**, reduzindo o tamanho dos arquivos
+- Suporte a **transparência** e **compressão com perdas ou sem perdas**
+- Compatibilidade ampla em navegadores modernos
+- Melhora significativa no **tempo de carregamento** e na **performance** da aplicação
+
 ## Estilização
 
 - Utilização de **Sass Modules**

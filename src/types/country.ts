@@ -17,6 +17,7 @@ export interface CountryCardData {
   name: string
   capital: string
   region: Continent
+  subregion?: string | null
   flag: CountryFlag
   languages: string[]
 }

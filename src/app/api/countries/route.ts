@@ -5,8 +5,8 @@ export async function GET(request: NextRequest) {
   const lang = searchParams.get('lang')
 
   const baseUrl = lang
-    ? `https://restcountries.com/v3.1/lang/${lang}?fields=cca3,name,translations,capital,region,flags,languages`
-    : 'https://restcountries.com/v3.1/all?fields=cca3,name,translations,capital,region,flags,languages'
+    ? `https://restcountries.com/v3.1/lang/${lang}?fields=cca3,name,translations,capital,region,subregion,flags,languages`
+    : 'https://restcountries.com/v3.1/all?fields=cca3,name,translations,capital,region,subregion,flags,languages'
 
   const response = await fetch(baseUrl, {
     next: { revalidate: 60 * 60 * 24 },
@@ -24,6 +24,7 @@ export async function GET(request: NextRequest) {
       country.translations?.por?.common ?? country.name?.common ?? 'Unknown',
     capital: country.capital?.[0] ?? '—',
     region: country.region,
+    subregion: country.subregion ?? null,
     flag: country.flags,
     languages: country.languages ? Object.values(country.languages) : [],
   }))

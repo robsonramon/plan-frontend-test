@@ -115,14 +115,30 @@
   letter-spacing: 0%;
   vertical-align: middle;
   border-radius: 10px;
+}
 
-  input {
-    accent-color: #f58220;
-    width: 25px;
-    height: 25px;
-    opacity: 1;
-    border-radius: 10px;
-    border-width: 3px;
-    border-color: #ffffff;
-  }
+.checkbox input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+  background-color: #f58220;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox input:checked {
+  background-color: #f58220;
+}
+
+.checkbox input:checked::after {
+  content: '✔';
+  color: #fff;
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
