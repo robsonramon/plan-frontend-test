@@ -33,6 +33,8 @@ http://localhost:3000
 
 ```
 
+Se preferir, pode acessar diretamente o deploy em: https://plan-frontend-test-lemon.vercel.app/
+
 ## Tecnologias utilizadas
 
 - **Next.js (App Router)**
